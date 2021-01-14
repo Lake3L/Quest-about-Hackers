@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e04ef127-4afa-4e7c-89d6-b5c0385f35da" name="Default Changelist" comment="Магический квадрат v1.0">
+    <list default="true" id="e04ef127-4afa-4e7c-89d6-b5c0385f35da" name="Default Changelist" comment="Прогресс над судоку: 1/3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sudoku.java" afterDir="false" />
     </list>
@@ -67,6 +67,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Магический квадрат v1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Магический квадрат v1.0" />
+    <MESSAGE value="Прогресс над судоку: 1/3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Прогресс над судоку: 1/3" />
   </component>
 </project>
