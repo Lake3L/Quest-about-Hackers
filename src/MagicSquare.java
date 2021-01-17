@@ -1,94 +1,110 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class MagicSquare extends Minigames implements SaveLoad{
-    /*
-    Магический квадрат
-    Допускаются лишь квадраты нечетного/кратного четырем размера
-    */
 
-    private String[][] square;
+    private int[][] square;
+    private int[][] solved_square;
+    private static int[][] tmp;
+    private static int[][] origin_square;
 
-    MagicSquare(int size) throws Exception{
-        if(size<=2||size%4!=0) throw new Exception("Wrong size");
-        if(((size&1)==1)) {
-            this.square=randomize(oddSquare(size));
-        }else{
-            this.square=randomize(evenSquare(size));
-        }
+    static{
+        origin_square = new int[3][3];
+        origin_square[0] = new int[]{2, 9, 4};
+        origin_square[1] = new int[]{7, 5, 3};
+        origin_square[2] = new int[]{6, 1, 8};
+        tmp = Arrays.copyOf(origin_square, 3);
     }
 
-    private static int[][] evenSquare(int n){
-        int[][] square = originSquare(n);
-        int c = 0;
-        for (int i = 0; i < square.length/2; i++) {
-            int a;
-            if(i< square.length/2) {
-                a = square[i][i];
-                square[i][i] = square[square.length-1- c][square.length-1- c];
-                square[square.length-1- c][square.length-1- c] = a;
-                c++;
-            }
-            return square;
-        }
-        c = 0;
-        for (int i = 0; i < square.length/2 ; i++) {
-            int a;
-            if(i< square.length/2){
-                a = square[square.length - 1 - c][i];
-                square[square.length - 1 - c][i] = square[i][square.length-1- c];
-                square[i][square.length-1- c] = a;
-                c++;
-            }
-        }
-        return square;
-    }
-    private static int[][] oddSquare(int n) {
-        int[][] square = new int[n][n];
-        int x = n/2;
-        int y = square.length-1;
-        int count = 1;
-
-        while (true){
-            square[(square.length-1)-y][x] = count;
-            count++;
-
-            if(x== square.length-1) x=-1;
-            if(y>= square.length-1) y=-1;
-            y++;
-            x++;
-            if (square[square.length-1-y][x] != 0) y--;
-
-            int count1=0;
-            for (int[] array: square) {
-                for (int z :array) {
-                    if(z == 0) count1++;
-                }
-            }
-            if (count1==0) break;
-        }
-        return square;
-    }
-    private static int[][] originSquare(int n){
-        int[][] square = new int[n][n];
-        int c = 1;
-
-        for (int i = 0; i > square.length; i++) {
-            for (int j = 0; j < square.length; j++) {
-                square[i][j] = c;
-                c++;
-            }
-        }
-        return square;
-    }
-    private static String[][] randomize(int[][] square_origin){
+    MagicSquare(){
         Random random = new Random();
-        String[][] square = new String[square_origin.length][square_origin.length];
-        for(int i = 0; i<square.length; i++){
-            for (int j = 0; j< square[i].length; j++){
-                square[i][j] = square_origin[i][j]+"";
-                if(random.nextBoolean()) square[i][j]=" ";
+        this.solved_square = randomize();
+        this.solved_square = square_add(this.solved_square, random.nextInt(9));
+        this.solved_square = square_multiply(this.solved_square, random.nextInt(9));
+        this.square = del_numbers(this.solved_square);
+    }
+
+    public void show(){
+        for(int i = 0; i<this.square.length; i++){
+            System.out.print("|");
+            for(int j = 0; j<this.square.length; j++){
+                System.out.printf("%2s|", this.square[i][j]==0?" ":this.square[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    private static int[][] del_numbers(int [][] square){
+        Random random = new Random();
+        for(int i = 0; i<5; i++){
+            int x = random.nextInt(2);
+            int y = random.nextInt(2);
+            if(square[x][y] == 0) {
+                continue;
+            }
+            square[x][y] = 0;
+        }
+        int c_0 = 0;
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                if(square[i][j] == 0) c_0++;
             }
         }
+        if(c_0<3) return del_numbers(square);
         return square;
+    }
+    private static int[][] randomize(){
+        Random random = new Random();
+        for(int i = 0; i<5+random.nextInt(5); i++){
+            switch (random.nextInt(2)){
+                case 0: transpose();
+                break;
+                case 1: swap_rows();
+                break;
+                case 2: swap_columns();
+                break;
+            }
+        }
+        return tmp;
+    }
+    private static void transpose(){
+        int[][] tmp = new int[3][3];
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                tmp[j][i]=origin_square[i][j];
+            }
+        }
+        origin_square=Arrays.copyOf(tmp, 3);
+    }
+    private static void swap_rows(){
+        int[] tmp = Arrays.copyOf(origin_square[0], 3);
+        origin_square[0] = Arrays.copyOf(origin_square[2], 3);
+        origin_square[2] = Arrays.copyOf(tmp, 3);
+    }
+    private static void swap_columns(){
+        transpose();
+        swap_rows();
+    }
+    private static int[][] square_add(int[][] square, int number){
+        int[][] tmp1 = Arrays.copyOf(square, 3);
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                if(tmp1[i][j]+number>99){
+                    return tmp;
+                }
+                tmp1[i][j]+=number;
+            }
+        }
+        return tmp1;
+    }
+    private static int[][] square_multiply(int[][] square, int number){
+        int[][] tmp1 = Arrays.copyOf(square, 3);
+        for(int i = 0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                if(tmp1[i][j]*number>99) return square;
+                tmp1[i][j]*=number;
+            }
+        }
+        return tmp1;
     }
 }

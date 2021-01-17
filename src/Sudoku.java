@@ -8,6 +8,7 @@ public class Sudoku extends Minigames implements SaveLoad {
     private static int[][] origin;
     private static int[][] tmp;
     private int[][] grid;
+    private int[][] solved_grid;
     private int difficulty;
 
     static {
@@ -27,13 +28,14 @@ public class Sudoku extends Minigames implements SaveLoad {
     public Sudoku(int difficulty){
         this.difficulty = difficulty;
         randomize();
+        this.solved_grid = tmp;
         this.grid = del_num(this.difficulty);
     }
 
     public void show(){
         for(int i = 0; i<9; i++){
             for(int j = 0; j<9; j++){
-                System.out.printf("|\u203E%s|", this.grid[i][j]==0?" ":this.grid[i][j]);
+                System.out.printf("|%s|", this.grid[i][j]==0?" ":this.grid[i][j]);
             }
             System.out.println();
         }
@@ -44,10 +46,15 @@ public class Sudoku extends Minigames implements SaveLoad {
         for (int i = 0; i < 50 + random.nextInt(10); i++) {
             switch (1 + random.nextInt(4)){
                 case 1: transpose();
+                break;
                 case 2: swap_rows();
+                break;
                 case 3: swap_columns();
+                break;
                 case 4: swap_rows_region();
+                break;
                 case 5: swap_columns_region();
+                break;
             }
         }
     }
@@ -161,13 +168,21 @@ public class Sudoku extends Minigames implements SaveLoad {
         }
     private static boolean columnConstraint(int[][] board, int column) {
             boolean[] constraint = new boolean[9];
-            return IntStream.range(0, 9)
-                    .allMatch(row -> checkConstraint(board, row, constraint, column));
+        for (int row = 0; row < 9; row++) {
+            if (!checkConstraint(board, row, constraint, column)) {
+                return false;
+            }
+        }
+        return true;
         }
     private static boolean rowConstraint(int[][] board, int row) {
             boolean[] constraint = new boolean[9];
-            return IntStream.range(0, 9)
-                    .allMatch(column -> checkConstraint(board, row, constraint, column));
+        for (int column = 0; column < 9; column++) {
+            if (!checkConstraint(board, row, constraint, column)) {
+                return false;
+            }
+        }
+        return true;
         }
     private static boolean checkConstraint(int[][] board, int row, boolean[] constraint, int column) {
             if (board[row][column] != 0) {
