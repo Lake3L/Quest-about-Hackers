@@ -9,21 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e04ef127-4afa-4e7c-89d6-b5c0385f35da" name="Default Changelist" comment="1">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/quest_jar.xml" afterDir="false" />
+    <list default="true" id="e04ef127-4afa-4e7c-89d6-b5c0385f35da" name="Default Changelist" comment="Почти готово">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/quest/Eva.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/quest/GuessPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/quest/GuessPassword.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/quest/MagicSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/quest/MagicSquare.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/quest/Sudoku.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/quest/Sudoku.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/quest/TextPart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/quest/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/quest/TextPart.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/quest/TextPart.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/quest/qwe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/quest/qwe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Eva.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GuessPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GuessPassword.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MagicSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MagicSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MagicSquares" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Minigames.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveLoad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Statistics.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sudoku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sudoku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextPart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TextPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextPart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/qwe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/qwe.java" afterDir="false" />
     </list>
@@ -59,7 +56,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.qwe">
+  <component name="RunManager" selected="JAR Application.quest.jar">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="quest" />
@@ -80,8 +77,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.qwe" />
         <item itemvalue="JAR Application.quest.jar" />
+        <item itemvalue="Application.qwe" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -103,7 +100,8 @@
     <MESSAGE value="Магический квадрат v1.0" />
     <MESSAGE value="Прогресс над судоку: 1/3" />
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="Почти готово" />
+    <option name="LAST_COMMIT_MESSAGE" value="Почти готово" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

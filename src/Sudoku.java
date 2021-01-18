@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Sudoku extends Minigames implements SaveLoad {
+public class Sudoku {
     //Судоку
 
     private static int[][] origin;

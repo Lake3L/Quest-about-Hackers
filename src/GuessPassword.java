@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GuessPassword extends Minigames implements SaveLoad{
+public class GuessPassword {
     //Быки и коровы
     private int number;
     private int attempts;

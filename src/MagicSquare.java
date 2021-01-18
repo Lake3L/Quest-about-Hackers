@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class MagicSquare extends Minigames implements SaveLoad{
+public class MagicSquare {
 
     private int[][] square;
     private int[][] solved_square;
