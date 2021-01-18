@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.Scanner;
 
 public class Sudoku extends Minigames implements SaveLoad {
     //Судоку
@@ -10,8 +10,11 @@ public class Sudoku extends Minigames implements SaveLoad {
     private int[][] grid;
     private int[][] solved_grid;
     private int difficulty;
+    private int attempts;
+    private static Scanner sc;
 
     static {
+        sc = new Scanner(System.in);
         origin = new int[9][];
         origin[0] = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         origin[1] = new int[]{4, 5, 6, 7, 8, 9, 1, 2, 3};
@@ -25,20 +28,64 @@ public class Sudoku extends Minigames implements SaveLoad {
         tmp = origin;
     }
 
-    public Sudoku(int difficulty){
-        this.difficulty = difficulty;
+    public Sudoku(){
+        if (TextPart.has_circuit()) this.attempts = 2 + 1;
+        else this.attempts = 2 + 0;
+        this.difficulty = 2;
         randomize();
         this.solved_grid = tmp;
         this.grid = del_num(this.difficulty);
+        show();
+    }
+    public boolean getAnswer(){
+        int[][] tmp_square = Arrays.copyOf(this.grid, 9);
+        int c_0 = 0;
+        for(int[] i:tmp_square){
+            for(int j:i){
+                if(j==0) c_0++;
+            }
+        }
+        for(int i = 0; i<c_0; i++) {
+            String ans = sc.nextLine();
+            if (!ans.matches("[1-9] [1-9] [1-9]")) {
+                System.out.println("Неверный ввод");
+                return getAnswer();
+            }
+            int x = Integer.parseInt(ans.substring(0, 1))-1;
+            int y = Integer.parseInt(ans.substring(2, 3))-1;
+            int ans_ = Integer.parseInt(ans.substring(4));
+            if (this.grid[x][y] != 0) {
+                System.out.println("Неверный ввод");
+                return getAnswer();
+            }
+            tmp_square[x][y] = ans_;
+            show();
+        }
+        if(this.solved_grid.equals(tmp_square)){
+            System.out.println("Взлом успешен");
+            return true;
+        }else{
+            System.out.printf("Взлом провален.\n"+
+                    "Попыток осталось: %d.",--this.attempts);
+            return this.attempts==0?false:getAnswer();
+        }
     }
 
-    public void show(){
+    private void show(){
+        for(int i = 0; i<27; i++) {
+            System.out.print("\u0332");
+        }
+        System.out.println();
         for(int i = 0; i<9; i++){
             for(int j = 0; j<9; j++){
                 System.out.printf("|%s|", this.grid[i][j]==0?" ":this.grid[i][j]);
             }
             System.out.println();
         }
+        for(int i = 0; i< 27; i++){
+            System.out.print("\u0305");
+        }
+        System.out.println();
     }
 
     private static void randomize() {
